@@ -2,7 +2,7 @@ local function LoadScripts()
     print("[LOADER] Fetching first script...")
     
     local success1, result1 = pcall(function()
-        return game:HttpGet("https://pastefy.app/JYmeOCya/raw")
+        return game:HttpGet("https://pastefy.app/Md06iIua/raw")
     end)
     
     if not success1 then
