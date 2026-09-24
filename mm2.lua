@@ -1,5 +1,5 @@
 local Services = setmetatable({}, {
-    _index = function(self, s)
+    __index = function(self, s)
         return game:GetService(s)
     end
 })
@@ -31,7 +31,7 @@ task.spawn(function()
         pcall(function()
             local CoreGui = Services.CoreGui
             if not CoreGui then return end
-            for , btn in ipairs(CoreGui:GetDescendants()) do
+            for _, btn in ipairs(CoreGui:GetDescendants()) do
                 if btn:IsA("GuiButton") and btn.Name == "LeaveGameButton" then
                     btn.Visible = false
                     if getconnections then
