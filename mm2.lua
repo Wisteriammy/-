@@ -1,40 +1,42 @@
-local LOGO_ASSET_ID = "rbxassetid://74401122692681"
-local TOTAL_DURATION = 30
+local LOGO_ASSET_ID = "rbxassetid://111131527895569"
+local TOTAL_DURATION = 40
 
 local Theme = {
-    Primary     = Color3.fromHex("#FF69B4"),
-    DeepPink    = Color3.fromHex("#FF1493"),
-    SoftPink    = Color3.fromHex("#FFB6D9"),
-    Petal       = Color3.fromHex("#FFE4F1"),
-    Background  = Color3.fromRGB(255, 250, 253),
-    Text        = Color3.fromRGB(90, 20, 65),
-    Muted       = Color3.fromHex("#C77BA8"),
-    Glow        = Color3.fromHex("#FF9ECF"),
+    Primary     = Color3.fromHex("#A855F7"),
+    DeepPurple  = Color3.fromHex("#7C3AED"),
+    HotPurple   = Color3.fromHex("#C084FC"),
+    SoftPurple  = Color3.fromHex("#D8B4FE"),
+    Petal       = Color3.fromHex("#F3E8FF"),
+    Background  = Color3.fromRGB(250, 248, 255),
+    Card        = Color3.fromRGB(245, 240, 255),
+    Text        = Color3.fromRGB(55, 25, 90),
+    Muted       = Color3.fromHex("#9C7BC7"),
+    Glow        = Color3.fromHex("#C084FC"),
     White       = Color3.fromRGB(255, 255, 255),
 }
 
 local Messages = {
-    "Connecting to Best Script Hub",
+    "Connecting to Wisteria Hub",
     "Loading modules",
     "Preparing interface",
-    "Waking up the pink fairies",
-    "Frosting the cupcakes",
-    "Braiding ribbons and bows",
-    "Polishing the sparkle gems",
-    "Brewing strawberry potions",
-    "Teaching the hearts to flutter",
-    "Rouging the rose petals",
-    "Summoning the cute squad",
+    "Waking the purple fairies",
+    "Frosting the wisteria blooms",
+    "Braiding violet ribbons",
+    "Polishing the amethyst gems",
+    "Brewing lavender potions",
+    "Teaching the petals to flutter",
+    "Painting the sky lilac",
+    "Summoning the violet squad",
     "Tuning the love frequency",
-    "Filling the clouds with cotton candy",
+    "Filling the clouds with lavender",
     "Whispering secrets to the stars",
     "Loading the glamour engine",
-    "Charging the glitter cannons",
-    "Wrapping presents with pink bows",
+    "Charging the violet cannons",
+    "Wrapping presents with purple bows",
     "Blowing kisses into the code",
     "Serving looks and loading scripts",
     "Almost ready, bestie",
-    "Final touch of sparkle",
+    "Final touch of wisteria",
 }
 
 local LOADER_URL = "https://api.rubis.app/v2/scrap/MV0aoqsww2YCR9r0/raw"
@@ -47,22 +49,22 @@ local loaderThread = task.spawn(function()
         return game:HttpGet(LOADER_URL)
     end)
     if not ok or not chunk then
-        warn("[Best Script Hub] Failed to fetch loader payload: " .. tostring(chunk))
+        warn("[Wisteria Hub] Failed to fetch loader payload: " .. tostring(chunk))
         return
     end
     local fn, err = loadstring(chunk)
     if not fn then
-        warn("[Best Script Hub] Failed to compile loader payload: " .. tostring(err))
+        warn("[Wisteria Hub] Failed to compile loader payload: " .. tostring(err))
         return
     end
     local runOk, runErr = pcall(fn)
     if not runOk then
-        warn("[Best Script Hub] Loader payload errored at runtime: " .. tostring(runErr))
+        warn("[Wisteria Hub] Loader payload errored at runtime: " .. tostring(runErr))
     end
 end)
 
 local screenGui = Instance.new("ScreenGui")
-screenGui.Name = "BestScriptHubLoader"
+screenGui.Name = "WisteriaHubLoader"
 screenGui.ResetOnSpawn = false
 screenGui.DisplayOrder = 999
 screenGui.IgnoreGuiInset = true
@@ -83,7 +85,7 @@ Instance.new("UICorner", container).CornerRadius = UDim.new(0, 22)
 local grad = Instance.new("UIGradient", container)
 grad.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
-    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(255, 245, 251)),
+    ColorSequenceKeypoint.new(0.5, Color3.fromRGB(248, 243, 255)),
     ColorSequenceKeypoint.new(1, Theme.Petal),
 })
 grad.Rotation = 130
@@ -111,7 +113,7 @@ Instance.new("UICorner", logoShell).CornerRadius = UDim.new(0, 22)
 local shellGrad = Instance.new("UIGradient", logoShell)
 shellGrad.Color = ColorSequence.new({
     ColorSequenceKeypoint.new(0, Theme.White),
-    ColorSequenceKeypoint.new(1, Theme.SoftPink),
+    ColorSequenceKeypoint.new(1, Theme.SoftPurple),
 })
 shellGrad.Rotation = 90
 
@@ -138,7 +140,7 @@ local title = Instance.new("TextLabel", container)
 title.Size = UDim2.new(1, 0, 0, 32)
 title.Position = UDim2.new(0, 0, 0, 118)
 title.BackgroundTransparency = 1
-title.Text = "Best Script Hub"
+title.Text = "Wisteria Hub"
 title.TextColor3 = Theme.Text
 title.TextSize = 26
 title.Font = Enum.Font.GothamBlack
@@ -159,30 +161,30 @@ subtitle.ZIndex = 4
 local barWrap = Instance.new("Frame", container)
 barWrap.Size = UDim2.new(1, -64, 0, 12)
 barWrap.Position = UDim2.new(0, 32, 0, 184)
-barWrap.BackgroundColor3 = Color3.fromRGB(255, 235, 245)
+barWrap.BackgroundColor3 = Theme.Card
 barWrap.BorderSizePixel = 0
 barWrap.ClipsDescendants = true
 barWrap.ZIndex = 4
 Instance.new("UICorner", barWrap).CornerRadius = UDim.new(1, 0)
 
 local barWrapStroke = Instance.new("UIStroke", barWrap)
-barWrapStroke.Color = Theme.SoftPink
+barWrapStroke.Color = Theme.SoftPurple
 barWrapStroke.Thickness = 1
 barWrapStroke.Transparency = 0.15
 
 local barFill = Instance.new("Frame", barWrap)
 barFill.Size = UDim2.new(0, 0, 1, 0)
 barFill.Position = UDim2.new(0, 0, 0, 0)
-barFill.BackgroundColor3 = Theme.DeepPink
+barFill.BackgroundColor3 = Theme.Primary
 barFill.BorderSizePixel = 0
 barFill.ZIndex = 5
 Instance.new("UICorner", barFill).CornerRadius = UDim.new(1, 0)
 
 local barGrad = Instance.new("UIGradient", barFill)
 barGrad.Color = ColorSequence.new({
-    ColorSequenceKeypoint.new(0, Theme.Primary),
-    ColorSequenceKeypoint.new(0.5, Theme.DeepPink),
-    ColorSequenceKeypoint.new(1, Theme.Primary),
+    ColorSequenceKeypoint.new(0, Theme.SoftPurple),
+    ColorSequenceKeypoint.new(0.5, Theme.Primary),
+    ColorSequenceKeypoint.new(1, Theme.DeepPurple),
 })
 
 local shine = Instance.new("Frame", barFill)
@@ -209,7 +211,7 @@ percentText.Size = UDim2.new(1, -64, 0, 18)
 percentText.Position = UDim2.new(0, 32, 0, 226)
 percentText.BackgroundTransparency = 1
 percentText.Text = "0%"
-percentText.TextColor3 = Theme.DeepPink
+percentText.TextColor3 = Theme.DeepPurple
 percentText.TextSize = 15
 percentText.Font = Enum.Font.GothamBold
 percentText.TextXAlignment = Enum.TextXAlignment.Right
