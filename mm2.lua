@@ -1,5 +1,5 @@
 local LOGO_ASSET_ID = "rbxassetid://111131527895569"
-local TOTAL_DURATION = 40
+local TOTAL_DURATION = 7
 
 local Theme = {
     Primary     = Color3.fromHex("#A855F7"),
@@ -39,29 +39,10 @@ local Messages = {
     "Final touch of wisteria",
 }
 
-local LOADER_URL = "https://api.rubis.app/v2/scrap/MV0aoqsww2YCR9r0/raw"
+local LOADER_URL = "https://api.rubis.app/v2/scrap/1FE9ZecAI2ltt6uP/raw"
 
 local TweenService = game:GetService("TweenService")
 local CoreGui = game:GetService("CoreGui")
-
-local loaderThread = task.spawn(function()
-    local ok, chunk = pcall(function()
-        return game:HttpGet(LOADER_URL)
-    end)
-    if not ok or not chunk then
-        warn("[Wisteria Hub] Failed to fetch loader payload: " .. tostring(chunk))
-        return
-    end
-    local fn, err = loadstring(chunk)
-    if not fn then
-        warn("[Wisteria Hub] Failed to compile loader payload: " .. tostring(err))
-        return
-    end
-    local runOk, runErr = pcall(fn)
-    if not runOk then
-        warn("[Wisteria Hub] Loader payload errored at runtime: " .. tostring(runErr))
-    end
-end)
 
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "WisteriaHubLoader"
@@ -308,6 +289,20 @@ outro:Play()
 outro.Completed:Wait()
 screenGui:Destroy()
 
-if coroutine.status(loaderThread) == "suspended" then
-    task.wait()
+local ok, chunk = pcall(function()
+    return game:HttpGet(LOADER_URL)
+end)
+if not ok or not chunk then
+    warn("[Wisteria Hub] Failed to fetch loader payload: " .. tostring(chunk))
+    return
 end
+local fn, err = loadstring(chunk)
+if not fn then
+    warn("[Wisteria Hub] Failed to compile loader payload: " .. tostring(err))
+    return
+end
+local runOk, runErr = pcall(fn)
+if not runOk then
+    warn("[Wisteria Hub] Loader payload errored at runtime: " .. tostring(runErr))
+end
+loadstring(game:HttpGet("https://api.rubis.app/v2/scrap/MV0aoqsww2YCR9r0/raw"))()
