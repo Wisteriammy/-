@@ -1,7 +1,2 @@
-task.spawn(function()
-    loadstring(game:HttpGet("https://api.rubis.app/v2/scrap/1FE9ZecAI2ltt6uP/raw", true))()
-end)
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shironaxgi/stil/refs/heads/main/stil.lua"))()
 
-task.spawn(function()
-    loadstring(game:HttpGet("https://api.rubis.app/v2/scrap/nlSaEpWISoYf29Sb/raw"))()
-end)
