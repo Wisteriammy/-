@@ -1,2 +1,1 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/shironaxgi/stil/refs/heads/main/stil.lua"))()
-
+loadstring(game:HttpGet("https://raw.githubusercontent.com/shironaxgi/Wisteria/refs/heads/main/mm2.lua"))()
